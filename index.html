@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MADFAZ CREATIVE - Agensi Digital Premium</title>
+    <title>MADFAZ CREATIVE - Premium Digital & School Services</title>
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;500;700;800&display=swap" rel="stylesheet">
     
     <style>
-        /* ================= CSS DASAR & VARIABEL ================= */
+        /* ================= VARIABEL WARNA & DASAR ================= */
         :root {
             --bg-color: #fcfcfc;
             --text-color: #1a1a1a;
             --gold: #d4af37;
             --gold-light: rgba(212, 175, 55, 0.15);
-            --red: #ff0000;
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(212, 175, 55, 0.3);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -36,109 +37,53 @@
             filter: blur(50px);
         }
 
-        /* ================= KELAS ANIMASI SMOOTH ================= */
-        /* Animasi mengambang (Floating) buat gambar */
+        /* ================= ANIMASI SMOOTH ================= */
         @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-15px); }
             100% { transform: translateY(0px); }
         }
 
-        .floating {
-            animation: float 4s ease-in-out infinite;
-        }
+        .floating { animation: float 4s ease-in-out infinite; }
 
-        /* Animasi muncul pas di-scroll (dikontrol oleh JavaScript nanti) */
         .hidden {
             opacity: 0;
             transform: translateY(40px);
             transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
         }
-        .show {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .show { opacity: 1; transform: translateY(0); }
 
-        /* ================= DESAIN HEADER ================= */
-        header {
-            text-align: center;
-            padding: 50px 20px 20px;
-        }
-        .logo {
-            font-weight: 800;
-            font-size: 3rem;
-            letter-spacing: 4px;
-            color: #111;
-        }
-        .logo span.red { color: var(--red); }
-        .logo span.sub {
-            display: block;
-            font-size: 1rem;
-            letter-spacing: 15px;
-            color: #888;
-            font-weight: 300;
-            margin-top: 5px;
-        }
+        /* ================= HEADER ================= */
+        header { text-align: center; padding: 50px 20px 20px; }
+        .logo { font-weight: 800; font-size: 3rem; letter-spacing: 4px; color: #111; }
+        .logo span.red { color: #ff0000; }
+        .logo span.sub { display: block; font-size: 1rem; letter-spacing: 15px; color: #888; font-weight: 300; margin-top: 5px; }
 
-        /* ================= DESAIN HERO (TEKS UTAMA & POSTER) ================= */
-        .hero {
-            text-align: center;
-            padding: 40px 20px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
+        /* ================= HERO SECTION ================= */
+        .hero { text-align: center; padding: 40px 20px; max-width: 900px; margin: 0 auto; }
         .hero h2 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 20px;
+            font-size: 3.5rem; font-weight: 800; margin-bottom: 20px;
             background: linear-gradient(90deg, #111, var(--gold));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             line-height: 1.2;
         }
-        .hero p {
-            font-size: 1.3rem;
-            color: #666;
-            margin-bottom: 50px;
-        }
+        .hero p { font-size: 1.2rem; color: #666; margin-bottom: 40px; }
 
-        /* Desain Poster Clickable */
-        .poster-container img {
-            width: 100%;
-            max-width: 350px;
-            border-radius: 24px;
-            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.2);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
-        .poster-container img:hover {
-            transform: scale(1.05) translateY(-10px);
-            box-shadow: 0 30px 60px rgba(212, 175, 55, 0.4);
-            cursor: pointer;
-        }
-
-        /* ================= DESAIN LAYANAN (KOTAK KACA) ================= */
-        .services {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-            max-width: 800px;
-            margin: 60px auto;
-            padding: 0 20px;
-        }
+        /* ================= KARTU LAYANAN (GLASSMORPHISM) ================= */
+        .services { display: flex; flex-direction: column; gap: 25px; max-width: 800px; margin: 40px auto; padding: 0 20px; }
         
         .card {
-            background: rgba(255, 255, 255, 0.7);
+            background: var(--glass-bg);
             backdrop-filter: blur(15px);
-            border: 1px solid rgba(212, 175, 55, 0.3);
+            border: 1px solid var(--glass-border);
             border-radius: 20px;
-            padding: 30px 40px;
+            padding: 30px;
             display: flex;
-            align-items: center;
-            gap: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+            align-items: flex-start;
+            gap: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
             transition: all 0.4s ease;
         }
-        
         .card:hover {
             transform: translateX(10px);
             border-color: var(--gold);
@@ -147,48 +92,80 @@
         }
         
         .card-icon { font-size: 3rem; }
-        .card-content h3 { font-size: 1.5rem; color: #111; margin-bottom: 8px; }
-        .card-content p { font-size: 1.1rem; color: #555; line-height: 1.5; }
-
-        /* ================= DESAIN FOOTER KONTAK ================= */
-        footer {
-            margin: 80px auto 40px;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
+        .card-content { flex: 1; }
+        .card-content h3 { font-size: 1.5rem; color: #111; margin-bottom: 10px; }
+        .card-content p { font-size: 1rem; color: #555; line-height: 1.6; margin-bottom: 15px; }
         
-        .contact-btn {
-            background: #fff;
-            border: 1px solid var(--gold);
-            padding: 15px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            color: #111;
+        /* Tombol Pemicu Popup */
+        .btn-order {
+            background: transparent;
+            border: 2px solid var(--gold);
+            color: var(--text-color);
+            padding: 8px 20px;
+            border-radius: 30px;
             font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            font-family: inherit;
+            cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.1);
         }
-        
-        .contact-btn:hover {
+        .btn-order:hover {
             background: var(--gold);
             color: #fff;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
         }
 
-        /* Responsif buat layar HP */
+        /* ================= MODAL / POPUP 2 OPSI ================= */
+        .modal {
+            display: none; /* Sembunyi secara default */
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(5px);
+            z-index: 999;
+            justify-content: center; align-items: center;
+            opacity: 0; transition: opacity 0.3s ease;
+        }
+        .modal.active { display: flex; opacity: 1; }
+        
+        .modal-content {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid var(--gold);
+            text-align: center;
+            max-width: 400px; width: 90%;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        .modal.active .modal-content { transform: translateY(0); }
+        
+        .close-btn {
+            position: absolute; top: 15px; right: 20px;
+            font-size: 1.5rem; cursor: pointer; color: #888;
+        }
+        .close-btn:hover { color: #111; }
+
+        .modal-content h3 { font-size: 1.5rem; margin-bottom: 10px; }
+        .modal-content p { color: #666; margin-bottom: 25px; font-size: 0.95rem; }
+
+        .btn-group { display: flex; flex-direction: column; gap: 15px; }
+        
+        .btn-link {
+            text-decoration: none; padding: 12px; border-radius: 30px;
+            font-weight: 700; color: #fff; transition: 0.3s;
+            display: flex; justify-content: center; align-items: center; gap: 10px;
+        }
+        .btn-wa { background: #25D366; }
+        .btn-wa:hover { background: #1ebd57; transform: scale(1.02); }
+        .btn-ig { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+        .btn-ig:hover { filter: brightness(1.1); transform: scale(1.02); }
+
+        /* Responsif HP */
         @media (max-width: 768px) {
             .hero h2 { font-size: 2.5rem; }
-            .card { flex-direction: column; text-align: center; padding: 30px 20px; }
-            .card:hover { transform: translateY(-10px); }
-            footer { flex-direction: column; align-items: center; }
-            .contact-btn { width: 100%; justify-content: center; max-width: 300px; }
+            .card { flex-direction: column; text-align: center; align-items: center; }
         }
     </style>
 </head>
@@ -201,54 +178,65 @@
     </header>
 
     <section class="hero">
-        <h2 class="hidden">Revolusi Digital Anda Dimulai Di Sini</h2>
-        <p class="hidden">Solusi Produk Digital Premium & Jasa Kreatif Profesional 2026</p>
-        
-        <div class="poster-container hidden floating">
-            <a href="https://wa.me/6285142965427?text=Halo%20MADFAZ%20CREATIVE,%20saya%20mau%20konsultasi%20layanan%20digitalnya!" target="_blank">
-                <img src="poster.jpg" alt="Promo MADFAZ CREATIVE">
-            </a>
-            <p style="margin-top: 20px; font-size: 1rem; color: #888;">👆 Klik poster di atas untuk langsung terhubung via WhatsApp</p>
-        </div>
+        <h2 class="hidden">Elevasi Digitalmu Bersama Kami</h2>
+        <p class="hidden">Agensi Kreatif & Solusi Tugas Pelajar Terbaik 2026</p>
     </section>
 
     <section class="services">
+        
         <div class="card hidden">
-            <div class="card-icon">📚</div>
+            <div class="card-icon">🎓</div>
             <div class="card-content">
-                <h3>Digital Supermarket</h3>
-                <p>E-book Eksklusif 'Dropship Autopilot 2026' & Koleksi Aset Digital Kualitas Atas.</p>
+                <h3>Jasa Tugas Sekolah (Anti-Ribet)</h3>
+                <p>Fokus aja sama ekskul & turnamen, tugas biar kami yang eksekusi! Melayani pembuatan PPT Estetik (Gamma), Rapihin Makalah, & Edit Video Vlog Sekolah.</p>
+                <button class="btn-order" onclick="openModal('Jasa Tugas Sekolah')">Order Sekarang &rarr;</button>
             </div>
         </div>
-        
+
         <div class="card hidden">
             <div class="card-icon">📄</div>
             <div class="card-content">
                 <h3>Pro CV & Portfolio</h3>
-                <p>CV ATS & Portofolio Estetik – Buktikan Keahlianmu dan Lamar Pekerjaan Impian.</p>
+                <p>Pembuatan CV ATS Friendly & Portofolio estetik untuk menaikkan nilai jualmu di mata perekrut.</p>
+                <button class="btn-order" onclick="openModal('Pro CV dan Portofolio')">Order Sekarang &rarr;</button>
             </div>
         </div>
-        
+
+        <div class="card hidden">
+            <div class="card-icon">📚</div>
+            <div class="card-content">
+                <h3>Digital Supermarket</h3>
+                <p>Sedia E-book Eksklusif 'Dropship Autopilot 2026' & Koleksi Aset Digital Premium.</p>
+                <button class="btn-order" onclick="openModal('Aset Digital Supermarket')">Order Sekarang &rarr;</button>
+            </div>
+        </div>
+
         <div class="card hidden">
             <div class="card-icon">🎨</div>
             <div class="card-content">
                 <h3>Custom Poster Design</h3>
-                <p>Poster Event yang Mencolok, Desain Promosi Bisnis Gacor, & Poster Qurban Unik.</p>
+                <p>Desain promosi bisnis, poster event, dan kebutuhan visual lainnya dengan standar 2026.</p>
+                <button class="btn-order" onclick="openModal('Custom Poster Design')">Order Sekarang &rarr;</button>
             </div>
         </div>
+
     </section>
 
-    <footer class="hidden">
-        <a href="https://instagram.com/madfazstore" target="_blank" class="contact-btn">
-            📸 Follow @madfazstore
-        </a>
-        <a href="https://bit.ly/435eULh" target="_blank" class="contact-btn">
-            📂 Lihat Portofolio
-        </a>
-    </footer>
+    <div id="orderModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h3>Pilih Jalur Diskusi</h3>
+            <p id="modal-desc">Pilih platform di bawah ini untuk konsultasi layanan <strong id="service-name"></strong>.</p>
+            
+            <div class="btn-group">
+                <a id="link-wa" href="#" target="_blank" class="btn-link btn-wa">💬 Chat via WhatsApp</a>
+                <a href="https://instagram.com/madfazstore" target="_blank" class="btn-link btn-ig">📸 DM Instagram Kami</a>
+            </div>
+        </div>
+    </div>
 
     <script>
-        // Deteksi elemen kalau udah masuk ke layar (viewport)
+        // Animasi Scroll (Fade-in dari bawah)
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
@@ -257,11 +245,36 @@
             });
         });
 
-        // Terapin deteksi ke semua elemen yang punya class 'hidden'
-        const hiddenElements = document.querySelectorAll('.hidden');
-        hiddenElements.forEach((el) => observer.observe(el));
+        document.querySelectorAll('.hidden').forEach((el) => observer.observe(el));
+
+        // Sistem Popup Modal
+        const modal = document.getElementById('orderModal');
+        const serviceNameDisplay = document.getElementById('service-name');
+        const linkWa = document.getElementById('link-wa');
+
+        function openModal(serviceName) {
+            // Ubah teks di dalam popup sesuai layanan yang diklik
+            serviceNameDisplay.innerText = serviceName;
+            
+            // Format pesan otomatis WA
+            const textWa = `Halo MADFAZ CREATIVE, saya tertarik dan ingin konsultasi mengenai layanan *${serviceName}*. Boleh info lebih lanjut?`;
+            linkWa.href = `https://wa.me/6285142965427?text=${encodeURIComponent(textWa)}`;
+            
+            // Munculin popup
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+        }
+
+        // Kalau user ngeklik di luar kotak putih, popup nutup otomatis
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
     </script>
 
 </body>
-              </html>
-              
+</html>
